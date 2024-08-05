@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/css/adminUpdateUserParticular.css"> 
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <div class="user-info">
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+        <div class="update-content">
+        <main class="content">
+            <form method="POST">
+                <h2>Edit User Particulars</h2>
+                {% for items in userDetails %}
+                <p>
+                <label for="username">Username:</label>
+                <input type="text" name="username" value={{items[0]}} readonly>
+                </p>
+                <p>
+                <label for="email">Email:</label>
+                <input type="email" name="email" placeholder={{items[1]}}>
+                </p>
+                <p>
+                <label for="fname">First Name:</label>
+                <input type="text" name="fname" placeholder={{items[2]}}>
+                </p>
+                <p>
+                <label for="lname">Last Name:</label>
+                <input type="text" name="lname" placeholder={{items[3]}}>
+                </p>
+                <input type="hidden" name="button_identifier" value="admin_button">
+                <div class="buttons">
+                <button type="submit" class="button" name="updateUserDetails">Update Details</button>
+                <a href="/adminDashboard">Back</a>
+                </div>
+                {% endfor %}
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+</body>
+{% endblock %}
+</html>

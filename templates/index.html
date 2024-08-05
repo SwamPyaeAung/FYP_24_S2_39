@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Service</title>
+    <link rel="stylesheet" href="static/css/index.css"> 
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+        <div class="auth-buttons">
+            <button onclick="location.href='/login'">Login</button>
+            <button onclick="location.href='/register'">Register</button>
+        </div>
+    </header>
+
+    <form method="POST" action="/">
+    <div class="search-section">
+            <label for="stockName">Stock Ticker:</label><br>
+            <input type="text" id="stockTicker" name="stockTicker"><br><br>
+            <input type="submit" value="Search">
+            {% if error %}
+            <p class=error><strong>Error:</strong> {{ error }}
+            {% endif %}
+    </div>
+    </form>
+    
+
+    <section class="stock-display">
+        <h2>Featured Stocks</h2>
+        <div class="stock-list">
+            <div class="stock">AAPL - Apple Inc.</div>
+            <div class="stock">GOOGL - Alphabet Inc.</div>
+            <div class="stock">MSFT - Microsoft Corporation</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <!--<script>
+        function searchStocks() {
+            const searchTerm = document.getElementById('stock-search').value;
+            // AJAX call to server to fetch stocks based on searchTerm
+            // Dynamically update the DOM with the search results
+        }
+    </script> -->
+</body>
+{% endblock %}
+</html>

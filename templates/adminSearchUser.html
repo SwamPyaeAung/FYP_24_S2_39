@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/css/adminSearchUser.css"> 
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <div class="user-info">
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+        <div class="search-content">
+        <main class="content">
+            <form method="POST" action="/adminUpdate">
+                <h2>Search Result</h2>
+                <table>
+                {% for items in details %}
+                <tr>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                </tr>
+                <tr>
+                    <td>{{items[0]}}</td>
+                    <td>{{items[1]}}</td>
+                    <td>{{items[2]}}</td>
+                    <td>{{items[3]}}</td>
+                </tr>
+                </table>
+                <br>
+                <input type="hidden" name="username" value={{items[0]}}>
+                {% endfor %}
+                <input type="hidden" name="button_identifier" value="admin_button">
+                <button type="submit" name="deleteUser" onclick="return confirm('Are you sure you want to delete the user account?');">Delete User</button>
+                <button type="submit" name="editUserDetails">Edit Details</button>
+                <button type="submit" name="back">Back</button>
+            </form>
+        </main>
+    </div>
+
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+</body>
+{% endblock %}
+</html>

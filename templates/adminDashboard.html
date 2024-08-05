@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="static/css/adminDashboard.css"> 
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+        <div class="user-info">
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside class="sidebar">
+            <nav>
+                <ul>
+                    <li><a href="#overview">Dashboard Overview</a></li><br>
+            </nav>
+        </aside>
+
+        <main class="content">
+            <form method="POST" action="/adminSearch">
+            <section id="user-search">
+                <h2>Search User</h2>
+                <input type="text" id="search-bar" placeholder="Enter user name..." name="username">
+                <button onclick="searchUser()">Search</button>
+                {% if error %}
+                <p class=error><strong></strong> {{ error }}
+                {% endif %}
+                <div id="search-results">
+                </div>
+            </section>
+            </form>
+            <section id="overview">
+                <h2>Dashboard Overview</h2>
+            </section>
+        </main>
+    </div>
+    
+
+    <footer>
+        <p>Admin Dashboard © 2024</p>
+    </footer>
+
+    <script>
+        function searchUser() {
+            const searchValue = document.getElementById('search-bar').value;
+        }
+
+    </script>
+</body>
+{% endblock %}
+</html>

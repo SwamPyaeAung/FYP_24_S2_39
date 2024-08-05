@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <link rel="stylesheet" href="static/css/userDashboard.css">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            {% if success %}
+            <p class=success><strong></strong> {{ success }}
+            {% endif %}
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+    
+    <form method="POST" action="/userDashboard">
+    <section id="search-section">
+        <input type="text" id="search-bar" placeholder="Search for stock tickers..." name="stockTicker">
+        <input type="hidden" name="button_identifier" value="search_button">
+        <input type="submit" value="Search">
+        {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </section>
+    </form>
+
+    <section id="update-profile">
+        <a href="{{url_for('viewProfile')}}">View Profile</a>
+        <a href="{{url_for('updateProfile')}}">Update Profile</a>
+        <p>
+        <form method="POST" action="/deleteProfile" onsubmit="return confirm('Are you sure you wish to delete your account?');">
+        <input type="submit" value="Delete Profile">
+        </form>
+        </p>
+    </section>
+
+    <form method="POST" action="/watchlistAction">
+    <section id="watchlist">
+        <h2>Your Watchlist</h2>
+        <ul id="watchlist-items">
+        {% for items in userWatchlist %}
+            <li>
+                <input type="hidden" name="button_identifier" value="watchlist_button">
+                <h4>{{items}}</h4>
+                <h4><button type="submit" name="removeStock" value={{items}}>Remove</button></h4>
+                <h4><button type="submit" name="displayStock" value={{items}}>Display Graph</button></h4>
+            </li>
+        {% endfor %}
+        </ul>
+    </section>
+    </form>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+    </script>
+
+</body>
+{% endblock %}
+</html>

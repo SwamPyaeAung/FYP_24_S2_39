@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Dashboard</title>
+    <link rel="stylesheet" href="static/css/stockResult.css">
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            <a href="{{url_for('userDashboard')}}">Back</a>
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+    
+    </form>
+
+    <form action="/stockDisplay">
+    <section id="watchlist">
+        <h2>Searched Stock</h2>
+        <ul id="stock-items">
+            {% if success %}
+            {% if stockTicker %}
+            <p class=success><strong>{{ success }}</strong> 
+            <div class="buttons">
+            <button><a href="{{url_for('watchlistAdd')}}">Add to Watchlist</a></button>
+            <div class="container">
+            <label for="stock_code">Stock Code:</label><br />
+            <input type="text" id="stock_code" placeholder="{{stockTicker}}" readonly/><br />
+            <label for="forecast_days">Days to Forecast:</label><br />
+            <input type="text" id="forecast_days" required/><br />
+            <h4><button type="submit" name="searchedStock" value={{success}} id="stock-submit">Display Graph</button></h4>
+            </div>
+            </div>
+            {% endif %}
+            {% endif %}
+            <div id="loading" style="display: none;">Loading .....</div>
+            <div id="charts" style="display: none;">
+                <h1>Stock Prediction Chart</h1>
+                <img id="stock_forecast_image" src="static/images/forecast_plot.png" alt="stock_forecast_image" />
+                <h1>Trend Analysis Chart</h1>
+                <img id="trend_analysis_image" src="static/images/trend_analysis_plot.png" alt="stock_forecast_image" />
+              </div>
+            </div>
+            <script src="static/js/script.js"></script>
+            
+        </ul>
+        {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+    </section>
+    </form>
+
+    <footer>
+        <p>Stock Market Dashboard © 2024</p>
+    </footer>
+
+    <script src="jquery-3.7.1.min.js"></script>
+    <script type="text/javascript">
+    </script>
+
+    </script>
+
+</body>
+{% endblock %}
+</html>

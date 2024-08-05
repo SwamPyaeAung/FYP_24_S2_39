@@ -1,0 +1,72 @@
+/* General Body Styles */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #3C3F41;
+    color: #F8F9FA;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.auth-buttons button {
+    background-color: #6C757D;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.auth-buttons button:hover {
+    background-color: #5A6268;
+}
+
+.search-section {
+    text-align: center;
+    padding: 20px;
+}
+
+#stock-search {
+    padding: 10px;
+    width: 300px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.stock-display {
+    padding: 20px;
+    text-align: center;
+}
+
+.stock-list .stock {
+    background-color: #FFFFFF;
+    padding: 10px;
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 0 rgba(0,0,0,0.2);
+}
+
+footer {
+    background-color: #3C3F41;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}

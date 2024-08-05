@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register Page</title>
+    <link rel="stylesheet" href="static/css/register.css"> 
+    <style>
+        .error-message {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+    </header>
+    <h2>Register</h2>
+    <form id="registerForm" action="/register" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]{5,}" title="Username must be at least 5 characters long and contain only letters and numbers.">
+            <span class="error-message" id="usernameError"></span>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+            <span class="error-message" id="emailError"></span>
+        </div>
+        <div>
+            <label for="fname">First Name:</label>
+            <input type="text" id="fname" name="fname" required>
+        </div>
+        <div>
+            <label for="lname">Last Name:</label>
+            <input type="text" id="lname" name="lname" required>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required minlength="8" title="Password must be at least 8 characters long.">
+            <span class="error-message" id="passwordError"></span>
+        </div>
+        <div>
+            <label for="confirm_password">Confirm Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" required minlength="8" title="Please enter the same password as above.">
+            <span class="error-message" id="confirmPasswordError"></span>
+        </div>
+        <div>
+            <button type="submit">Register</button>
+            {% if error %}
+            <p class=error><strong>Error:</strong> {{ error }}
+            {% endif %}
+        </div>
+        <div>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </div>
+    </form>
+    
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('registerForm');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm_password');
+
+            username.addEventListener('input', validateUsername);
+            email.addEventListener('input', validateEmail);
+            password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validateConfirmPassword);
+
+            form.addEventListener('submit', function(event) {
+                validateUsername();
+                validateEmail();
+                validatePassword();
+                validateConfirmPassword();
+
+                if (document.querySelectorAll('.error-message:empty').length !== document.querySelectorAll('.error-message').length) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateUsername() {
+                const error = document.getElementById('usernameError');
+                if (!username.value) {
+                    error.textContent = 'Username is required';
+                } else if (!username.validity.valid) {
+                    error.textContent = username.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateEmail() {
+                const error = document.getElementById('emailError');
+                if (!email.value) {
+                    error.textContent = 'Email is required';
+                } else if (!email.validity.valid) {
+                    error.textContent = 'Please enter a valid email address';
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validatePassword() {
+                const error = document.getElementById('passwordError');
+                if (!password.value) {
+                    error.textContent = 'Password is required';
+                } else if (!password.validity.valid) {
+                    error.textContent = password.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateConfirmPassword() {
+                const error = document.getElementById('confirmPasswordError');
+                if (!confirmPassword.value) {
+                    error.textContent = 'Confirm password is required';
+                } else if (password.value !== confirmPassword.value) {
+                    error.textContent = 'Passwords do not match';
+                } else {
+                    error.textContent = '';
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="static/css/login.css">
+    <style>
+        .error-message {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+    </header>
+    <h2>Login</h2>
+    <form id="loginForm" action="/login" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required>
+            <span class="error-message" id="usernameError"></span>
+        </div>
+        <div>
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+            <span class="error-message" id="passwordError"></span>
+        </div>
+        <div>
+            <button type="submit">Login</button>
+        </div>
+        <div>
+            <p>Don't have an account? <a href="/register">Register</a></p>
+        </div>
+    </form>
+    {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('loginForm');
+            const username = document.getElementById('username');
+            const password = document.getElementById('password');
+
+            username.addEventListener('input', validateUsername);
+            password.addEventListener('input', validatePassword);
+
+            form.addEventListener('submit', function(event) {
+                validateUsername();
+                validatePassword();
+
+                if (document.querySelectorAll('.error-message:empty').length !== document.querySelectorAll('.error-message').length) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateUsername() {
+                const error = document.getElementById('usernameError');
+                if (!username.value) {
+                    error.textContent = 'Username is required';
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validatePassword() {
+                const error = document.getElementById('passwordError');
+                if (!password.value) {
+                    error.textContent = 'Password is required';
+                } else {
+                    error.textContent = '';
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+</html>

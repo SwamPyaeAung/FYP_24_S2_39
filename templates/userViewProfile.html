@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Market Service</title>
+    <link rel="stylesheet" href="static/css/userViewProfile.css"> 
+</head>
+<body>
+    <header>
+        <h1>User Dashboard</h1>
+        <div id="user-info">
+            <a href="{{url_for('logout')}}">Logout</a>
+        </div>
+    </header>
+    <div class="user-details">
+    <main class="content">
+    <h2>Your Details</h2>
+    <table>
+        {% for items in details %}
+        <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+        </tr>
+        <tr>
+            <td>{{items[0]}}</td>
+            <td>{{items[1]}}</td>
+            <td>{{items[2]}}</td>
+            <td>{{items[3]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    </main>
+    <p>
+    <a href="/userDashboard">Back</a>
+    </p>
+    </div>
+    
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+</body>
+{% endblock %}
+</html>

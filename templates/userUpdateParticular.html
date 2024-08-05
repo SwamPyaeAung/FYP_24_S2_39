@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+{% extends "layout.html" %}
+{% block body %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Profile</title>
+    <link rel="stylesheet" href="static/css/userUpdateParticular.css">
+    <style>
+        .error-message {
+            color: red;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MarketProphet</h1>
+    </header>
+    <h2>Update Profile</h2>
+    <form id="updateForm" action="/updateProfile" method="post">
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" required pattern="[A-Za-z0-9]{5,}" title="Username must be at least 5 characters long and contain only letters and numbers.">
+            <span class="error-message" id="usernameError"></span>
+        </div>
+        <div>
+            <label for="current_password">Current Password:</label>
+            <input type="password" id="current_password" name="current_password" required>
+        </div>
+        <div> 
+            <label for="password">New Password:</label>
+            <input type="password" id="new_password" name="new_password" minlength="8" title="Password must be at least 8 characters long.">
+            <span class="error-message" id="passwordError"></span>
+        </div>
+        <div>
+            <label for="confirm_password">Confirm New Password:</label>
+            <input type="password" id="confirm_password" name="confirm_password" minlength="8" title="Please enter the same password as above.">
+            <span class="error-message" id="confirmPasswordError"></span>
+        </div>
+        <div>
+            <label for="firstName">First Name:</label>
+            <input type="text" name="fname">
+        </div>
+        <div>
+            <label for="lastName">Last Name:</label>
+            <input type="text" name="lname">
+        </div>
+        <div>
+            <input type="submit" value="Update">
+            <a href="/userDashboard">Back</a>
+        </div>
+        {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+        {% endif %}
+        {% if success %}
+        <p class=success><strong>{{ success }}</strong> 
+        {% endif %}
+    </form>
+
+    <footer>
+        <p>Stock Market Service © 2024</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('updateForm');
+            const username = document.getElementById('username');
+            const email = document.getElementById('email');
+            const new_password = document.getElementById('new_password');
+            const confirmPassword = document.getElementById('confirm_password');
+
+            username.addEventListener('input', validateUsername);
+            email.addEventListener('input', validateEmail);
+            new_password.addEventListener('input', validatePassword);
+            confirmPassword.addEventListener('input', validateConfirmPassword);
+
+            form.addEventListener('submit', function(event) {
+                validateUsername();
+                validateEmail();
+                validatePassword();
+                validateConfirmPassword();
+
+                if (document.querySelectorAll('.error-message:empty').length !== document.querySelectorAll('.error-message').length) {
+                    event.preventDefault();
+                }
+            });
+
+            function validateUsername() {
+                const error = document.getElementById('usernameError');
+                if (!username.value) {
+                    error.textContent = 'Username is required';
+                } else if (!username.validity.valid) {
+                    error.textContent = username.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateEmail() {
+                const error = document.getElementById('emailError');
+                if (!email.value) {
+                    error.textContent = 'Email is required';
+                } else if (!email.validity.valid) {
+                    error.textContent = 'Please enter a valid email address';
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validatePassword() {
+                const error = document.getElementById('passwordError');
+                if (new_password.value && !new_password.validity.valid) {
+                    error.textContent = new_password.title;
+                } else {
+                    error.textContent = '';
+                }
+            }
+
+            function validateConfirmPassword() {
+                const error = document.getElementById('confirmPasswordError');
+                if (confirmPassword.value && new_password.value !== confirmPassword.value) {
+                    error.textContent = 'Passwords do not match';
+                } else {
+                    error.textContent = '';
+                }
+            }
+        });
+    </script>
+</body>
+{% endblock %}
+</html>

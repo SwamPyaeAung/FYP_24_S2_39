@@ -1,0 +1,105 @@
+
+header {
+    background-color: #3C3F41;
+    color: #F8F9FA;
+    padding: 5px 10px; /* Further reduced padding */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 15px; /* Reduced margin */
+    font-size: 20px; /* Further reduced font size */
+}
+
+/* Form container */
+form {
+    background-color: #fff;
+    padding: 15px; /* Reduced padding */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%; /* Reduced width for better fitting */
+    max-width: 350px; /* Reduced max-width */
+    margin: 0 auto;
+}
+
+/* Form elements */
+label {
+    display: block;
+    margin-bottom: 5px; /* Reduced margin */
+    color: #555;
+    font-weight: bold;
+    font-size: 12px; /* Further reduced font size */
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 6px; /* Further reduced padding */
+    margin-bottom: 10px; /* Reduced margin */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 12px; /* Further reduced font size */
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+input[type="submit"],
+a {
+    flex: 1;
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px; /* Reduced padding */
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin: 5px; /* Add margin to ensure space between buttons */
+}
+
+input[type="submit"]:hover,
+a:hover {
+    background-color: #0056b3;
+}
+
+/* Error messages */
+.error-message {
+    color: red;
+    font-size: 12px;
+    margin-top: -5px; /* Adjusted margin */
+    margin-bottom: 5px; /* Adjusted margin */
+    display: block;
+}
+
+footer {
+    background-color: #3C3F41;
+    color: white;
+    text-align: center;
+    padding: 5px 0; /* Reduced padding */
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
