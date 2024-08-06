@@ -124,10 +124,11 @@ def register():
         email = request.form["email"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         cursor = db.cursor(buffered=True)
@@ -167,10 +168,11 @@ def login():
         password = request.form["password"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         print(username, password)
@@ -231,10 +233,11 @@ def userDashboard():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         cursor = db.cursor(buffered=True)
@@ -423,10 +426,11 @@ def watchlistAdd():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         cursor = db.cursor(buffered=True)
@@ -483,10 +487,11 @@ def watchlistRemove():
                 stockToDelete = request.form["removeStock"]
 
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
+                    host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user="doadmmin",
+                    password="AVNS_ItKG7fksQ2ww_rQ7MLX",
                     database="market_prophet",
+                    port = 25060
                 )
 
                 cursor = db.cursor(buffered=True)
@@ -573,10 +578,11 @@ def viewProfile():
         username = session["username"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         cursor = db.cursor()
@@ -603,10 +609,11 @@ def updateProfile():
         lname = request.form["lname"]
 
         db = mysql.connector.connect(
-            host="localhost",
-            user="root",
-            password="root",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
             database="market_prophet",
+            port = 25060
         )
 
         cursor = db.cursor(buffered=True)
@@ -637,10 +644,11 @@ def deleteProfile():
             username = session["username"]
 
             db = mysql.connector.connect(
-                host="localhost",
-                user="root",
-                password="root",
-                database="market_prophet",
+            host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+            user="doadmmin",
+            password="AVNS_ItKG7fksQ2ww_rQ7MLX",
+            database="market_prophet",
+            port = 25060
             )
 
             cursor = db.cursor()
@@ -710,10 +718,11 @@ def adminUpdate():
             if checkDeleteBtn is not None:
                 username = request.form["username"]
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
+                    host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user="doadmmin",
+                    password="AVNS_ItKG7fksQ2ww_rQ7MLX",
                     database="market_prophet",
+                    port = 25060
                 )
                 cursor = db.cursor()
                 getUserID = """SELECT UserID from users WHERE username = '%s'""" % (
@@ -757,10 +766,11 @@ def adminUpdate():
                 firstName = request.form["fname"]
                 lastName = request.form["lname"]
                 db = mysql.connector.connect(
-                    host="localhost",
-                    user="root",
-                    password="root",
+                    host="db-mysql-sgp1-12968-do-user-17367918-0.j.db.ondigitalocean.com",
+                    user="doadmmin",
+                    password="AVNS_ItKG7fksQ2ww_rQ7MLX",
                     database="market_prophet",
+                    port = 25060
                 )
                 if not (email):
                     cursor = db.cursor()
